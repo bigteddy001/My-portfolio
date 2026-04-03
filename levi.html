@@ -3,92 +3,448 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Levi Timothy | Aspiring Trader & Entrepreneur</title>
+    <title>Levi Timothy | Entrepreneur • Trader • Builder</title>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Playfair+Display:wght@400;600&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+    
     <style>
+        /* --- Color Palette & Variables --- */
         :root {
-            --bg: #121212;
-            --card: #1e1e1e;
+            --bg-deep: #0B0B0F;
+            --bg-sec: #12121A;
             --accent: #D4AF37;
-            --text: #e0e0e0;
+            --text-main: #EAEAEA;
+            --text-muted: #A0A0A0;
+            --font-sig: 'Great Vibes', cursive;
+            --font-head: 'Playfair Display', serif;
+            --font-body: 'Inter', sans-serif;
+            --transition: all 0.4s ease;
         }
-        body {
-            font-family: 'Inter', sans-serif;
-            background-color: var(--bg);
-            color: var(--text);
-            line-height: 1.6;
+
+        /* --- Global Resets --- */
+        * {
             margin: 0;
             padding: 0;
+            box-sizing: border-box;
+            scroll-behavior: smooth;
         }
-        header {
+
+        body {
+            background-color: var(--bg-deep);
+            color: var(--text-main);
+            font-family: var(--font-body);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        a {
+            text-decoration: none;
+            color: var(--text-main);
+            transition: var(--transition);
+        }
+
+        /* --- Typography --- */
+        .signature {
+            font-family: var(--font-sig);
+            color: var(--accent);
+            font-size: 3.5rem;
+            font-weight: normal;
+        }
+
+        h1, h2, h3 {
+            font-family: var(--font-head);
+            font-weight: 600;
+        }
+
+        h2 {
+            font-size: 2.5rem;
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+
+        h2::after {
+            content: '';
+            display: block;
+            width: 50px;
+            height: 2px;
+            background: var(--accent);
+            margin: 15px auto 0;
+        }
+
+        /* --- Layout & Sections --- */
+        section {
+            padding: 100px 10%;
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+        }
+
+        section.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .bg-secondary {
+            background-color: var(--bg-sec);
+        }
+
+        /* --- Buttons --- */
+        .btn {
+            display: inline-block;
+            padding: 12px 30px;
+            border: 1px solid var(--accent);
+            background: transparent;
+            color: var(--accent);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-size: 0.85rem;
+            cursor: pointer;
+            transition: var(--transition);
+            margin-right: 15px;
+            margin-top: 20px;
+        }
+
+        .btn:hover {
+            background: var(--accent);
+            color: var(--bg-deep);
+            box-shadow: 0 0 15px rgba(212, 175, 55, 0.4);
+        }
+
+        .btn-solid {
+            background: var(--accent);
+            color: var(--bg-deep);
+        }
+
+        .btn-solid:hover {
+            background: transparent;
+            color: var(--accent);
+        }
+
+        /* --- Hero Section --- */
+        #hero {
             height: 100vh;
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
             text-align: center;
-            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('https://images.unsplash.com/photo-1590283603385-17ffb3a7f29f?auto=format&fit=crop&q=80&w=1000');
-            background-size: cover;
+            background: radial-gradient(circle at center, #1a1a24 0%, var(--bg-deep) 70%);
+            opacity: 1; /* Always visible on load */
+            transform: translateY(0);
         }
-        h1 { font-size: 4rem; color: #fff; margin-bottom: 10px; }
-        .accent-text { color: var(--accent); }
-        .btn {
-            padding: 12px 30px;
-            background: var(--accent);
-            color: #000;
-            text-decoration: none;
-            font-weight: bold;
-            border-radius: 5px;
-            margin-top: 20px;
-            transition: 0.3s;
+
+        .hero-subtitle {
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            margin-bottom: 20px;
         }
-        .btn:hover { opacity: 0.8; transform: translateY(-3px); }
-        section { padding: 80px 10%; }
-        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; }
-        .card { background: var(--card); padding: 25px; border-radius: 10px; border-left: 4px solid var(--accent); }
-        footer { text-align: center; padding: 40px; background: #0a0a0a; }
+
+        .hero-desc {
+            font-size: 1.2rem;
+            max-width: 600px;
+            margin: 20px auto;
+            color: var(--text-muted);
+        }
+
+        /* --- Identity & About --- */
+        .statement {
+            font-size: 1.8rem;
+            text-align: center;
+            font-family: var(--font-head);
+            font-style: italic;
+            max-width: 800px;
+            margin: 0 auto;
+            color: var(--text-main);
+        }
+
+        .about-text {
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+            font-size: 1.1rem;
+            color: var(--text-muted);
+        }
+
+        /* --- Cards (What I Do & Projects) --- */
+        .grid-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .card {
+            background: var(--bg-deep);
+            border: 1px solid #1f1f2e;
+            padding: 40px 30px;
+            text-align: center;
+            transition: var(--transition);
+        }
+
+        .card:hover {
+            border-color: var(--accent);
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+        }
+
+        .card h3 {
+            margin-bottom: 15px;
+            color: var(--accent);
+        }
+
+        /* --- Skills Section --- */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+        }
+
+        .skill-category h3 {
+            color: var(--accent);
+            margin-bottom: 20px;
+            border-bottom: 1px solid #1f1f2e;
+            padding-bottom: 10px;
+        }
+
+        .skill-category ul {
+            list-style: none;
+        }
+
+        .skill-category li {
+            margin-bottom: 10px;
+            color: var(--text-muted);
+            display: flex;
+            align-items: center;
+        }
+
+        .skill-category li::before {
+            content: '▹';
+            color: var(--accent);
+            margin-right: 10px;
+        }
+
+        /* --- Contact Section --- */
+        .contact-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 50px;
+            justify-content: center;
+        }
+
+        .contact-info, .contact-form {
+            flex: 1;
+            min-width: 300px;
+            max-width: 500px;
+        }
+
+        .contact-info p {
+            margin-bottom: 15px;
+            font-size: 1.1rem;
+        }
+
+        .contact-info span {
+            color: var(--accent);
+        }
+
+        .form-group {
+            margin-bottom: 25px;
+        }
+
+        input, textarea {
+            width: 100%;
+            background: transparent;
+            border: none;
+            border-bottom: 1px solid #333;
+            padding: 10px 0;
+            color: var(--text-main);
+            font-family: var(--font-body);
+            font-size: 1rem;
+            transition: var(--transition);
+            outline: none;
+        }
+
+        input:focus, textarea:focus {
+            border-bottom-color: var(--accent);
+        }
+
+        textarea {
+            resize: vertical;
+            min-height: 100px;
+        }
+
+        footer {
+            text-align: center;
+            padding: 30px;
+            background: var(--bg-deep);
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            border-top: 1px solid #1f1f2e;
+        }
+
+        /* --- Mobile Optimization --- */
+        @media (max-width: 768px) {
+            .signature { font-size: 2.8rem; }
+            h2 { font-size: 2rem; }
+            section { padding: 60px 5%; }
+            .btn { display: block; width: 100%; margin: 15px 0 0 0; text-align: center; }
+            .statement { font-size: 1.4rem; }
+        }
     </style>
 </head>
 <body>
 
-    <header>
-        <h1>Levi <span class="accent-text">Timothy</span></h1>
-        <p>Aspiring Trader | Entrepreneur | Growth-Focused</p>
-        <a href="#contact" class="btn">Let's Connect</a>
-    </header>
-
-    <section id="about">
-        <h2 class="accent-text">About Me</h2>
-        <p>I’m passionate about building skills in trading, business, and personal development. My journey is defined by discipline and the pursuit of financial freedom through tech and market analysis.</p>
+    <!-- 3. Home Page / Hero -->
+    <section id="hero">
+        <h1 class="signature">Levi Timothy</h1>
+        <p class="hero-subtitle">Entrepreneur • Trader • Builder</p>
+        <p class="hero-desc">Aspiring Trader & Entrepreneur. Building discipline, skill, and financial independence.</p>
+        <div>
+            <a href="#projects" class="btn btn-solid">Explore My Work</a>
+            <a href="#contact" class="btn">Contact Me</a>
+        </div>
     </section>
 
-    <section id="skills">
-        <h2 class="accent-text">What I Do</h2>
-        <div class="grid">
+    <!-- 2. Identity Statement -->
+    <section id="identity" class="bg-secondary">
+        <p class="statement">
+            "I am focused on growth, consistency, and building a life of independence through skill, strategy, and discipline."
+        </p>
+    </section>
+
+    <!-- 4. About Page -->
+    <section id="about">
+        <h2>About Me</h2>
+        <div class="about-text">
+            <p>I am Levi Timothy, a growth-driven individual committed to building a strong foundation in trading, business, and personal discipline.</p>
+            <br>
+            <p>My journey is centered around consistency, self-improvement, and developing skills that create long-term value. I believe in patience, learning from failure, and executing with precision.</p>
+        </div>
+    </section>
+
+    <!-- 3. What I Do (Cards) -->
+    <section id="what-i-do" class="bg-secondary">
+        <h2>Core Focus</h2>
+        <div class="grid-container">
             <div class="card">
-                <h3>Trading</h3>
-                <p>Forex analysis, market structure (HH/LL), and strict risk management.</p>
+                <h3>📈 Trading Journey</h3>
+                <p>Mastering market mechanics, executing strategies with precision, and prioritizing capital preservation.</p>
             </div>
             <div class="card">
-                <h3>Business</h3>
-                <p>Exploring dropshipping and scalable e-commerce models.</p>
+                <h3>💼 Business Dev</h3>
+                <p>Identifying digital opportunities, building scalable side hustles, and developing entrepreneurial acumen.</p>
             </div>
             <div class="card">
-                <h3>Mindset</h3>
-                <p>High discipline, rapid learning, and consistency in execution.</p>
+                <h3>🧠 Personal Growth</h3>
+                <p>Cultivating unshakeable discipline, daily focus, and a mindset geared towards continuous, lifelong learning.</p>
             </div>
         </div>
     </section>
 
+    <!-- 5. Skills Section -->
+    <section id="skills">
+        <h2>My Arsenal</h2>
+        <div class="skills-grid">
+            <div class="skill-category">
+                <h3>Trading</h3>
+                <ul>
+                    <li>Market Structure Analysis</li>
+                    <li>Risk Management Principles</li>
+                    <li>Developing Consistency</li>
+                    <li>Psychological Control</li>
+                </ul>
+            </div>
+            <div class="skill-category">
+                <h3>Business</h3>
+                <ul>
+                    <li>Side Hustle Development</li>
+                    <li>Digital Opportunities</li>
+                    <li>Entrepreneurial Thinking</li>
+                    <li>Brand Building</li>
+                </ul>
+            </div>
+            <div class="skill-category">
+                <h3>Personal Development</h3>
+                <ul>
+                    <li>Discipline & Routine</li>
+                    <li>Deep Focus Work</li>
+                    <li>Continuous Learning</li>
+                    <li>Resilience Planning</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- 6. Projects Section -->
+    <section id="projects" class="bg-secondary">
+        <h2>Current Pursuits</h2>
+        <div class="grid-container">
+            <div class="card">
+                <h3>Project 1: My Trading Journey</h3>
+                <p>Documenting my growth, lessons learned, and evolving market understanding in real-time.</p>
+            </div>
+            <div class="card">
+                <h3>Project 2: Personal Brand</h3>
+                <p>Designed and developed this minimalist digital space as the foundation of my professional identity.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- 7. Contact Page -->
     <section id="contact">
-        <h2 class="accent-text">Get In Touch</h2>
-        <p>Email: leevchord247@gmail.com</p>
-        <p>WhatsApp: 08062061769</p>
-        <p>Instagram: @diceo_fficial</p>
+        <h2>Let's Connect.</h2>
+        <div class="contact-container">
+            <div class="contact-info">
+                <p><span>Email:</span> leevchord247@gmail.com</p>
+                <p><span>WhatsApp:</span> 08062061769</p>
+                <p><span>Instagram:</span> @diceo_fficial</p>
+            </div>
+            
+            <div class="contact-form">
+                <form action="#" method="POST">
+                    <div class="form-group">
+                        <input type="text" placeholder="Your Name" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="email" placeholder="Your Email" required>
+                    </div>
+                    <div class="form-group">
+                        <textarea placeholder="Your Message" required></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-solid">Send Message</button>
+                </form>
+            </div>
+        </div>
     </section>
 
     <footer>
-        <p>&copy; 2026 Levi Timothy. Built for Growth.</p>
+        <p>&copy; 2026 Levi Timothy. Built with discipline.</p>
     </footer>
 
+    <!-- JS for Smooth Fade-In Animations -->
+    <script>
+        const sections = document.querySelectorAll('section:not(#hero)');
+
+        const observerOptions = {
+            root: null,
+            threshold: 0.15,
+            rootMargin: "0px"
+        };
+
+        const observer = new IntersectionObserver(function(entries, observer) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, observerOptions);
+
+        sections.forEach(section => {
+            observer.observe(section);
+        });
+    </script>
 </body>
 </html>
+
